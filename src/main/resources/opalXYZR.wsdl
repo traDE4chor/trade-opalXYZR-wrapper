@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.uni-stuttgart.de/iaas/serviceWrapper/opalXYZR/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="opalXYZR" targetNamespace="http://www.uni-stuttgart.de/iaas/serviceWrapper/opalXYZR/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://www.uni-stuttgart.de/iaas/serviceWrapper/opalXYZR/">
+            <xsd:element name="runOpalXyzr">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="simulationIdentifier"
+                                     type="tns:tSimulationIdentifier"/>
+                        <xsd:element name="replyToCallbackAddress"
+                                     type="xsd:string"/>
+                        <xsd:element name="dataModelRef"
+                                     type="tns:tDataModelReference">
+                        </xsd:element>
+                        <xsd:element name="clustersDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                        <xsd:element name="clusterPositionsDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                        <xsd:element name="numberOfSnapshotToProcess"
+                                     type="xsd:int">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="en">
+                                    This integer value specifies the index of the snapshot to process and is
+                                    therefore used to retrieve the correct element of the collection of snapshots
+                                    provided through the snapshots data element at the TraDE Middleware. Furthermore,
+                                    this index is also used to correctly upload the results of the cluster
+                                    calculation to the clusIdi and clusPositions
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="lx" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="ly" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="lz" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="Nb" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="Nc" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="Nd" type="xsd:int">
+                        </xsd:element>
+                        <xsd:element name="resultMDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                        <xsd:element name="resultDisradDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                        <xsd:element name="resultCPrecDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                        <xsd:element name="resultXyzrDataElement"
+                                     type="tns:tDataElementRef">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="runOpalXyzrResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="simulationID" type="xsd:string"/>
+                        <xsd:element name="started" type="xsd:boolean"></xsd:element>
+                        <xsd:element name="message" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:complexType name="tDataModelReference">
+                <xsd:sequence>
+                    <xsd:element name="namespaceURI"
+                                 type="xsd:string">
+                    </xsd:element>
+                    <xsd:element name="localName" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="tSimulationIdentifier">
+                <xsd:sequence>
+                    <xsd:element name="key"
+                                 type="xsd:string">
+                    </xsd:element>
+                    <xsd:element name="value" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="tDataElementRef">
+                <xsd:sequence>
+                    <xsd:element name="dataObjectName"
+                                 type="xsd:string">
+                    </xsd:element>
+                    <xsd:element name="dataElementName" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="isCollectionDataElement" type="xsd:boolean"/>
+            </xsd:complexType>
+
+            <xsd:element name="callback">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="simulationIdentifier" type="tns:tSimulationIdentifier" minOccurs="1"
+                                     maxOccurs="1"/>
+                        <xsd:element name="resultDataLinks" type="tns:tResultDataList" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="faultMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:complexType name="tResultDataList">
+                <xsd:sequence>
+                    <xsd:element name="result" type="tns:tResultRef" minOccurs="1" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="tResultRef">
+                <xsd:sequence>
+                    <xsd:element name="dataObjectName" type="xsd:string"/>
+                    <xsd:element name="dataElementName" type="xsd:string"/>
+                    <xsd:element name="linkToDataValue" type="xsd:string"/>
+                    <xsd:element name="directLinkToData" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="runOpalXyzrRequest">
+        <wsdl:part element="tns:runOpalXyzr" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="runOpalXyzrResponse">
+        <wsdl:part element="tns:runOpalXyzrResponse" name="parameters"/>
+    </wsdl:message>
+
+    <wsdl:message name="callbackRequest">
+        <wsdl:part element="tns:callback" name="parameters"/>
+    </wsdl:message>
+
+    <wsdl:portType name="opalXYZR">
+        <wsdl:operation name="runOpalXYZR">
+            <wsdl:input message="tns:runOpalXyzrRequest"/>
+            <wsdl:output message="tns:runOpalXyzrResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="opalXyzrSOAP" type="tns:opalXYZR">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="runOpalXYZR">
+            <soap:operation
+                    soapAction="http://www.uni-stuttgart.de/iaas/serviceWrapper/opalXYZR/runOpalXYZR"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OpalXyzrService">
+        <wsdl:port binding="tns:opalXyzrSOAP" name="OpalXyzrServicePort">
+            <!-- Embedded Jetty deployment -->
+            <!-- <soap:address location="http://localhost:8080/services/opalXYZR" /> -->
+            <!-- Tomcat deployment, embedded or standalone -->
+            <soap:address location="http://localhost:8080/opalXYZR/services/OpalXyzrServicePort"/>
+        </wsdl:port>
+    </wsdl:service>
+
+    <wsdl:portType name="opalXYZRCallback">
+        <wsdl:operation name="callbackXYZR">
+            <wsdl:input message="tns:callbackRequest"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="opalXYZRCallbackSOAP" type="tns:opalXYZRCallback">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="callbackXYZR">
+            <soap:operation
+                    soapAction="http://www.uni-stuttgart.de/iaas/serviceWrapper/opalXYZR/callbackXYZR"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OpalXYZRCallbackService">
+        <wsdl:port binding="tns:opalXYZRCallbackSOAP" name="OpalXYZRCallbackServicePort">
+            <soap:address location="http://www.example.org/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

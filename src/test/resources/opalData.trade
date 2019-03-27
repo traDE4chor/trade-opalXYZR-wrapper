@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DataDependenceGraph xmlns:ns2="http://org.trade.models/ddg" name="OpalSimulationChoreography" targetNamespace="http://de.uni-stuttgart.iaas/opalChor">
+    <processors>
+        <processor identifier="participant_OpalPrep" name="OpalPrep">
+            <incoming/>
+            <outgoing/>
+            <type>participant</type>
+        </processor>
+        <processor identifier="activity_39b1ce14-8d32-45ca-a9b2-4b106dd261df" name="prepareData">
+            <incoming>
+                <edge>ddgEdge_32432b0e-abfe-4183-abc5-d167b337debc</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_41fc22ce-c1e9-449b-9577-de997b4a7bbc</edge>
+            </outgoing>
+            <parent>participant_OpalPrep</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="participant_OpalMC" name="OpalMC">
+            <incoming/>
+            <outgoing/>
+            <type>participant</type>
+        </processor>
+        <processor identifier="activity_0bf0b2af-1e3e-4971-a5ca-b20939695296" name="runOpalMCSimulation">
+            <incoming>
+                <edge>ddgEdge_9a03dee1-6d48-4e82-a3c0-72b501fd679f</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_fd4d12d1-3b25-4273-b280-6e9fafe86381</edge>
+            </outgoing>
+            <parent>participant_OpalMC</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="activity_9ba25df3-17f6-483b-9347-e5dc588b4a8a" name="processAllSnapshots">
+            <incoming>
+                <edge>ddgEdge_87d181cf-7b64-407e-93c9-ceb92aeaa812</edge>
+            </incoming>
+            <outgoing/>
+            <parent>participant_OpalMC</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="participant_OpalCLUS" name="OpalCLUS">
+            <incoming/>
+            <outgoing/>
+            <type>participant</type>
+        </processor>
+        <processor identifier="activity_04fde6ef-f1c2-4323-88a9-eaafe9c93f76" name="calcClusters">
+            <incoming>
+                <edge>ddgEdge_291b8360-13d6-4a62-ae38-5b41466199c6</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_b895721f-ac04-48f1-988d-7f6d5048034e</edge>
+            </outgoing>
+            <parent>participant_OpalCLUS</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="participant_OpalXYZR" name="OpalXYZR">
+            <incoming/>
+            <outgoing/>
+            <type>participant</type>
+        </processor>
+        <processor identifier="activity_3f23e9fa-509e-4ff6-826d-bf3ec085ffb5" name="calcPrecipitates">
+            <incoming>
+                <edge>ddgEdge_040d0ee7-f9de-49ab-a2e8-e926c6ca65ee</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_7d478ecc-e3e5-4fea-9ee4-3f51bb2c01b7</edge>
+            </outgoing>
+            <parent>participant_OpalXYZR</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="activity_bd5f325d-5e64-4ba3-8af3-48c1ee333a37" name="receiveParameters">
+            <incoming/>
+            <outgoing>
+                <edge>ddgEdge_2e8e4ced-8d13-40a2-8196-a7f1b6103550</edge>
+                <edge>ddgEdge_881773db-cb63-40d7-baf8-f72b4c293bcb</edge>
+                <edge>ddgEdge_1237993c-36fd-4798-a8e0-ebdd41024e3b</edge>
+            </outgoing>
+            <parent>participant_OpalPrep</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="participant_OpalVisual" name="OpalVisual">
+            <incoming/>
+            <outgoing/>
+            <type>participant</type>
+        </processor>
+        <processor identifier="activity_68e04065-67fd-4240-a24f-28c3f380e60a" name="createPlot">
+            <incoming>
+                <edge>ddgEdge_1af00e1e-9258-4050-a9a1-fc2cc78a7a26</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_f9f15cc4-17e6-4f88-accc-abc106c9c870</edge>
+            </outgoing>
+            <parent>participant_OpalVisual</parent>
+            <type>activity</type>
+        </processor>
+        <processor identifier="activity_a7da44c9-61ee-4d4c-8293-000b9b7576dc" name="createVideo">
+            <incoming>
+                <edge>ddgEdge_3494d142-43cb-46c0-9484-0d67644102a9</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_0c7d797e-1416-4666-b725-c05e1979c351</edge>
+            </outgoing>
+            <parent>participant_OpalVisual</parent>
+            <type>activity</type>
+        </processor>
+    </processors>
+    <dataObjects>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_bad9e13a-ee40-486c-a967-23a632d83aba" name="opalMCInput">
+            <incoming/>
+            <outgoing>
+                <edge>ddgEdge_9a03dee1-6d48-4e82-a3c0-72b501fd679f</edge>
+            </outgoing>
+            <dataElements>
+                <dataElement isCollection="false" identifier="dataElement_800ec4a4-37ae-4c12-b263-6457b50e7806" name="lattice">
+                    <incoming>
+                        <edge>ddgEdge_881773db-cb63-40d7-baf8-f72b4c293bcb</edge>
+                    </incoming>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_b0f22ff5-b8de-4db2-beb2-8f4bdee345fa" name="energy">
+                    <incoming>
+                        <edge>ddgEdge_1237993c-36fd-4798-a8e0-ebdd41024e3b</edge>
+                    </incoming>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_d04fcb75-e72a-4c48-bbba-78bfc81ec1f7" name="opal_in">
+                    <incoming>
+                        <edge>ddgEdge_41fc22ce-c1e9-449b-9577-de997b4a7bbc</edge>
+                    </incoming>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_0fc3d647-21e0-4ef9-bc42-896dcfef0070" name="opalMCOutput">
+            <incoming>
+                <edge>ddgEdge_fd4d12d1-3b25-4273-b280-6e9fafe86381</edge>
+            </incoming>
+            <outgoing/>
+            <dataElements>
+                <dataElement isCollection="true" identifier="dataElement_8d0d464e-0bd3-40aa-a479-f54bbcedb68d" name="snapshots[]">
+                    <incoming/>
+                    <outgoing>
+                        <edge>ddgEdge_291b8360-13d6-4a62-ae38-5b41466199c6</edge>
+                        <edge>ddgEdge_3494d142-43cb-46c0-9484-0d67644102a9</edge>
+                    </outgoing>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_b541923b-d46f-4e2a-ad92-27d8545cead9" name="saturation">
+                    <incoming/>
+                    <outgoing>
+                        <edge>ddgEdge_1af00e1e-9258-4050-a9a1-fc2cc78a7a26</edge>
+                    </outgoing>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="true" identifier="dataElement_c5a010cc-9822-463c-a704-de5343faba86" name="imdtransfer[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_0d8c4bdb-a5ad-4997-ae9c-65a69ec1f88f" name="report">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_9b8794db-0673-4a55-ab5b-467b9d306c26" name="simParameters">
+            <incoming>
+                <edge>ddgEdge_2e8e4ced-8d13-40a2-8196-a7f1b6103550</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_32432b0e-abfe-4183-abc5-d167b337debc</edge>
+            </outgoing>
+            <dataElements>
+                <dataElement isCollection="false" identifier="dataElement_d512df4e-4aa4-41f6-87b3-d6272271b237" name="numberOfSnapshots">
+                    <incoming/>
+                    <outgoing>
+                        <edge>ddgEdge_87d181cf-7b64-407e-93c9-ceb92aeaa812</edge>
+                    </outgoing>
+                    <type>integer</type>
+                    <contentType></contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_d78fa4eb-8114-4183-86ec-6dd75128774d" name="snapshotFrequency">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                    <contentType></contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_8e91b6be-f5b7-4600-b85b-b4e5bf3fd0ad" name="checkpointFrequency">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_8a28e18e-b7a8-4bf1-8b60-184c9685e4d6" name="lx">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_e01cfc75-5ef1-494b-ae76-5dec1ecda827" name="ly">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_aed82167-26cf-459b-8c36-1fb21f2420c4" name="lz">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_28215876-adc7-42be-a128-b221cd4e6763" name="Nb">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_4128bf85-4d76-4b9a-9e16-8969d0ecc3dd" name="Nc">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_14b686d6-5dee-4caa-a7c3-c839e1ff8a72" name="Nd">
+                    <incoming/>
+                    <outgoing/>
+                    <type>integer</type>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_3eb75550-0beb-414b-86b3-947d6b6242f9" name="clusters">
+            <incoming>
+                <edge>ddgEdge_b895721f-ac04-48f1-988d-7f6d5048034e</edge>
+            </incoming>
+            <outgoing>
+                <edge>ddgEdge_040d0ee7-f9de-49ab-a2e8-e926c6ca65ee</edge>
+            </outgoing>
+            <dataElements>
+                <dataElement isCollection="true" identifier="dataElement_833b2a55-9d95-4197-b0cf-7648666607af" name="clusters[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="true" identifier="dataElement_d16d3b15-96a1-4f51-97ae-37452de44bce" name="clusterPositions[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_22acec58-a1fa-4fe5-b771-7f6b10536e2a" name="precipitates">
+            <incoming>
+                <edge>ddgEdge_7d478ecc-e3e5-4fea-9ee4-3f51bb2c01b7</edge>
+            </incoming>
+            <outgoing/>
+            <dataElements>
+                <dataElement isCollection="true" identifier="dataElement_1f7eb709-87e0-4807-afd2-a9242d3b3b7b" name="m[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="true" identifier="dataElement_b5d14ec6-5482-4996-a810-800e7de9a54d" name="disrad[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="true" identifier="dataElement_1021654c-413f-45e0-90b6-8875e5339753" name="cprec[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+                <dataElement isCollection="true" identifier="dataElement_fa2de6dd-2000-4391-9ca3-44588b5bd191" name="xyzr[]">
+                    <incoming/>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>text/plain</contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="false" identifier="dataObject_ec1b436d-f151-4d90-ac0c-c07a68820896" name="media">
+            <incoming/>
+            <outgoing/>
+            <dataElements>
+                <dataElement isCollection="false" identifier="dataElement_731bb5d7-fb92-4fcf-9af5-faa614bcd7ad" name="video">
+                    <incoming>
+                        <edge>ddgEdge_0c7d797e-1416-4666-b725-c05e1979c351</edge>
+                    </incoming>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>video/mp4</contentType>
+                </dataElement>
+                <dataElement isCollection="false" identifier="dataElement_099b9e22-ce82-4f08-9d8e-044ca310d196" name="plot">
+                    <incoming>
+                        <edge>ddgEdge_f9f15cc4-17e6-4f88-accc-abc106c9c870</edge>
+                    </incoming>
+                    <outgoing/>
+                    <type>binary</type>
+                    <contentType>application/postscript</contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+        <dataObject useDataForCorrelation="true" identifier="dataObject_ffe8be5b-0e16-4c03-a25e-c1de2d4b4593" name="simulation">
+            <incoming/>
+            <outgoing/>
+            <dataElements>
+                <dataElement isCollection="false" identifier="dataElement_a0b76a15-a1b9-4ba5-b5ff-95339b9b9cf5" name="simulationID">
+                    <incoming/>
+                    <outgoing/>
+                    <type>string</type>
+                    <contentType></contentType>
+                </dataElement>
+            </dataElements>
+        </dataObject>
+    </dataObjects>
+    <dependenceEdges>
+        <dependenceEdge identifier="ddgEdge_41fc22ce-c1e9-449b-9577-de997b4a7bbc" name="writeOpal_In">
+            <source>activity_39b1ce14-8d32-45ca-a9b2-4b106dd261df</source>
+            <target>dataElement_d04fcb75-e72a-4c48-bbba-78bfc81ec1f7</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_fd4d12d1-3b25-4273-b280-6e9fafe86381" name="writeOpalMCResults">
+            <source>activity_0bf0b2af-1e3e-4971-a5ca-b20939695296</source>
+            <target>dataObject_0fc3d647-21e0-4ef9-bc42-896dcfef0070</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_9a03dee1-6d48-4e82-a3c0-72b501fd679f" name="readOpalMCInput">
+            <source>dataObject_bad9e13a-ee40-486c-a967-23a632d83aba</source>
+            <target>activity_0bf0b2af-1e3e-4971-a5ca-b20939695296</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_87d181cf-7b64-407e-93c9-ceb92aeaa812" name="getSnapshotNumber">
+            <source>dataElement_d512df4e-4aa4-41f6-87b3-d6272271b237</source>
+            <target>activity_9ba25df3-17f6-483b-9347-e5dc588b4a8a</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_291b8360-13d6-4a62-ae38-5b41466199c6" name="readSnapshots">
+            <source>dataElement_8d0d464e-0bd3-40aa-a479-f54bbcedb68d</source>
+            <target>activity_04fde6ef-f1c2-4323-88a9-eaafe9c93f76</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_b895721f-ac04-48f1-988d-7f6d5048034e" name="writeClusters">
+            <source>activity_04fde6ef-f1c2-4323-88a9-eaafe9c93f76</source>
+            <target>dataObject_3eb75550-0beb-414b-86b3-947d6b6242f9</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_040d0ee7-f9de-49ab-a2e8-e926c6ca65ee" name="readClusters">
+            <source>dataObject_3eb75550-0beb-414b-86b3-947d6b6242f9</source>
+            <target>activity_3f23e9fa-509e-4ff6-826d-bf3ec085ffb5</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_7d478ecc-e3e5-4fea-9ee4-3f51bb2c01b7" name="writePrecipitates">
+            <source>activity_3f23e9fa-509e-4ff6-826d-bf3ec085ffb5</source>
+            <target>dataObject_22acec58-a1fa-4fe5-b771-7f6b10536e2a</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_2e8e4ced-8d13-40a2-8196-a7f1b6103550" name="storeParameters">
+            <source>activity_bd5f325d-5e64-4ba3-8af3-48c1ee333a37</source>
+            <target>dataObject_9b8794db-0673-4a55-ab5b-467b9d306c26</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_32432b0e-abfe-4183-abc5-d167b337debc" name="readParameters">
+            <source>dataObject_9b8794db-0673-4a55-ab5b-467b9d306c26</source>
+            <target>activity_39b1ce14-8d32-45ca-a9b2-4b106dd261df</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_1af00e1e-9258-4050-a9a1-fc2cc78a7a26" name="readSaturation">
+            <source>dataElement_b541923b-d46f-4e2a-ad92-27d8545cead9</source>
+            <target>activity_68e04065-67fd-4240-a24f-28c3f380e60a</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_3494d142-43cb-46c0-9484-0d67644102a9" name="readSnapshots">
+            <source>dataElement_8d0d464e-0bd3-40aa-a479-f54bbcedb68d</source>
+            <target>activity_a7da44c9-61ee-4d4c-8293-000b9b7576dc</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_0c7d797e-1416-4666-b725-c05e1979c351" name="writeVideo">
+            <source>activity_a7da44c9-61ee-4d4c-8293-000b9b7576dc</source>
+            <target>dataElement_731bb5d7-fb92-4fcf-9af5-faa614bcd7ad</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_f9f15cc4-17e6-4f88-accc-abc106c9c870" name="writePlot">
+            <source>activity_68e04065-67fd-4240-a24f-28c3f380e60a</source>
+            <target>dataElement_099b9e22-ce82-4f08-9d8e-044ca310d196</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_881773db-cb63-40d7-baf8-f72b4c293bcb" name="writeLattice">
+            <source>activity_bd5f325d-5e64-4ba3-8af3-48c1ee333a37</source>
+            <target>dataElement_800ec4a4-37ae-4c12-b263-6457b50e7806</target>
+        </dependenceEdge>
+        <dependenceEdge identifier="ddgEdge_1237993c-36fd-4798-a8e0-ebdd41024e3b" name="writeEnergy">
+            <source>activity_bd5f325d-5e64-4ba3-8af3-48c1ee333a37</source>
+            <target>dataElement_b0f22ff5-b8de-4db2-beb2-8f4bdee345fa</target>
+        </dependenceEdge>
+    </dependenceEdges>
+</ns2:DataDependenceGraph>
